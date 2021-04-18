@@ -55,6 +55,7 @@ public class Checklist extends AppCompatActivity {
             }
         });
 
+        //전공과목 확인 버튼 클릭 시 이벤트
         Button btn_jeongong = (Button) findViewById(R.id.btn_go_jeongong);
         btn_jeongong.setOnClickListener(new View.OnClickListener() {
             @Override
