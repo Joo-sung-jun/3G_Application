@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Mypage">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="70dp"
+        android:layout_height="213dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.242"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/bt_change"
+        android:layout_width="166dp"
+        android:layout_height="55dp"
+        android:text="개인정보수정"
+        android:textSize="20sp"
+        app:backgroundTint="#4F78B0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575" />
+
+    <Button
+        android:id="@+id/bt_logout"
+        android:layout_width="122dp"
+        android:layout_height="54dp"
+        android:text="로그아웃"
+        android:textSize="20sp"
+        app:backgroundTint="#4F78B0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.655" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="이름 : ooo"
+        android:textColor="#4f78b0"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.331" />
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="학번 : 00학번"
+        android:textColor="#4f78b0"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.385" />
+
+    <TextView
+        android:id="@+id/tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="이메일 : 1917@gnu.ac.kr"
+        android:textColor="#4f78b0"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.434" />
+
+    <LinearLayout
+        android:layout_width="395dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="186dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_logout"
+        app:layout_constraintVertical_bias="0.666">
+
+        <Button
+            android:id="@+id/btn_calculator"
+            android:layout_width="103dp"
+            android:layout_height="66dp"
+            android:text="학점계산기"
+            android:textColor="#4F78B0"
+            android:textSize="12sp"
+            app:backgroundTint="@color/white" />
+
+        <Button
+            android:id="@+id/btn_checklist"
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:text="체크리스트"
+            android:textColor="#4F78B0"
+            android:textSize="12sp"
+            app:backgroundTint="@color/white" />
+
+        <Button
+            android:id="@+id/btn_mypage"
+            android:layout_width="98dp"
+            android:layout_height="66dp"
+            android:text="졸업요강"
+            android:textColor="#4F78B0"
+            android:textSize="12sp"
+            app:backgroundTint="@color/white" />
+
+        <Button
+            android:id="@+id/btn_ppt"
+            android:layout_width="102dp"
+            android:layout_height="66dp"
+            android:text="마이페이지"
+            android:textColor="#4F78B0"
+            android:textSize="12sp"
+            app:backgroundTint="@color/white" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
