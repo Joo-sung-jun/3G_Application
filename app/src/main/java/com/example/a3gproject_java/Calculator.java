@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 public class Calculator extends AppCompatActivity {
 
@@ -15,7 +15,7 @@ public class Calculator extends AppCompatActivity {
         setContentView(R.layout.activity_calculator);
 
         //하단바 학점계산기 버튼 클릭 시 학점계산기 첫 화면으로 이동(홈화면)
-        Button btn_calculator = (Button) findViewById(R.id.btn_calculator);
+        ImageButton btn_calculator = (ImageButton) findViewById(R.id.btn_calculator);
         btn_calculator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,7 +25,7 @@ public class Calculator extends AppCompatActivity {
         });
 
         //하단바 체크리스트 버튼 클릭 시 체크리스트 첫 화면으로 이동
-        Button btn_checklist = (Button) findViewById(R.id.btn_checklist);
+        ImageButton btn_checklist = (ImageButton) findViewById(R.id.btn_checklist);
         btn_checklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +35,7 @@ public class Calculator extends AppCompatActivity {
         });
 
         //하단바 졸업요강 버튼 클릭 시 졸업요강 첫 화면을 이동
-        Button btn_ppt = (Button) findViewById(R.id.btn_ppt);
+        ImageButton btn_ppt = (ImageButton) findViewById(R.id.btn_ppt);
         btn_ppt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +45,7 @@ public class Calculator extends AppCompatActivity {
         });
 
         //하단바 마이페이지 버튼 클릭 시 마이페이지 첫 화면으로 이
-        Button btn_account = (Button) findViewById(R.id.btn_mypage);
+        ImageButton btn_account = (ImageButton) findViewById(R.id.btn_mypage);
         btn_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

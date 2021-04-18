@@ -169,6 +169,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="395dp"
         android:layout_height="63dp"
         android:layout_marginTop="186dp"
@@ -177,44 +178,47 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_logout"
         app:layout_constraintVertical_bias="0.666">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_calculator"
-            android:layout_width="103dp"
+            android:layout_width="100dp"
             android:layout_height="66dp"
-            android:text="학점계산기"
-            android:textColor="#4F78B0"
-            android:textSize="12sp"
-            app:backgroundTint="@color/white" />
+            android:padding="15dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/calculator_icon"
+            tools:ignore="MissingConstraints"
+            android:background="@android:color/transparent" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_checklist"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="66dp"
-            android:text="체크리스트"
-            android:textColor="#4F78B0"
-            android:textSize="12sp"
-            app:backgroundTint="@color/white" />
+            android:padding="15dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/checklist_icon"
+            tools:ignore="MissingConstraints"
+            android:background="@android:color/transparent" />
 
-        <Button
-            android:id="@+id/btn_mypage"
-            android:layout_width="98dp"
-            android:layout_height="66dp"
-            android:text="졸업요강"
-            android:textColor="#4F78B0"
-            android:textSize="12sp"
-            app:backgroundTint="@color/white" />
-
-        <Button
+        <ImageButton
             android:id="@+id/btn_ppt"
-            android:layout_width="102dp"
+            android:layout_width="100dp"
             android:layout_height="66dp"
-            android:text="마이페이지"
-            android:textColor="#4F78B0"
-            android:textSize="12sp"
-            app:backgroundTint="@color/white" />
+            android:padding="15dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ppt_icon"
+            tools:ignore="MissingConstraints"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/btn_mypage"
+            android:layout_width="100dp"
+            android:layout_height="66dp"
+            android:padding="15dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/mypage_icon"
+            tools:ignore="MissingConstraints"
+            android:background="@android:color/transparent" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
