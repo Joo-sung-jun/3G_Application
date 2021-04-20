@@ -7,8 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
 public class Mypage extends AppCompatActivity {
+    private String strNick, strProfileImg, strEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +78,35 @@ public class Mypage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Logout.class);
                 startActivity(intent);
+            }
+        });
+
+
+        //카카오톡
+        Intent intent = getIntent();
+        strNick = intent.getStringExtra("name");
+        strProfileImg = intent.getStringExtra("profileImg");
+        strEmail = intent.getStringExtra("email");
+
+        //TextView tv_nick = findViewById(R.id.tv_nickName);
+        //TextView tv_email = findViewById(R.id.tv_email);
+        //ImageView iv_profile = findViewById(R.id.iv_profile);
+
+        //tv_nick.setText(strNick);
+        //tv_email.setText(strEmail);
+
+        //Glide.with(this).load(strProfileImg).into(iv_profile);
+
+        findViewById(R.id.bt_logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+                    @Override
+                    public void onCompleteLogout() {
+                        //로그아웃 성공
+                        finish();
+                    }
+                });
             }
         });
 

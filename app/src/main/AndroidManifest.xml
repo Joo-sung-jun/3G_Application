@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.a3gproject_java">
-
-    <!--인터넷권한설정-->
+    <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.3GProject_Java"
+        android:usesCleartextTraffic="true">
 
-        android:name=".KakaoApplication">
-
-
+        <activity android:name=".SubActivity"></activity>
         <activity android:name=".Logout" />
         <activity android:name=".Change" />
         <activity android:name=".Checklist_jeongong" />
@@ -29,21 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
 
-                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
-                    android:scheme="kakao59d523ee90ee6c6976f371910563fd88" />
-            </intent-filter>
-        </activity>
-        
-
-
-
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="59d523ee90ee6c6976f371910563fd88" />
     </application>
 
 </manifest>

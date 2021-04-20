@@ -1,110 +1,102 @@
 package com.example.a3gproject_java;
 
+import android.content.Intent;
+import android.media.MediaSession2;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kakao.sdk.auth.LoginClient;
-import com.kakao.sdk.auth.model.OAuthToken;
-import com.kakao.sdk.user.UserApiClient;
-import com.kakao.sdk.user.model.User;
+import com.kakao.auth.ISessionCallback;
+import com.kakao.auth.Session;
+import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.MeV2ResponseCallback;
+import com.kakao.usermgmt.response.MeV2Response;
+import com.kakao.util.exception.KakaoException;
 
-import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
-import kotlin.jvm.functions.Function2;
 
 public class Logout extends AppCompatActivity {
-    private static final String TAG = "Logout";
 
-    private View loginButton, logoutButton;
-    private TextView nickName;
-    private ImageView profileImage;
+
+    private ISessionCallback mSessionCallback;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout);
-
-        loginButton = findViewById(R.id.login);
-        logoutButton = findViewById(R.id.logout);
-        nickName = findViewById(R.id.nickName);
-        profileImage = findViewById(R.id.profile);
-
-        Function2<OAuthToken, Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
+        mSessionCallback = new ISessionCallback() {
             @Override
-            public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
-                if(oAuthToken != null){
-
-                }
-                if(throwable != null){
-
-                }
-                updateKakaoLoginUi();
-                return null;
-            }
-        };
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(LoginClient.getInstance().isKakaoTalkLoginAvailable(Logout.this)) {
-                    LoginClient.getInstance().loginWithKakaoTalk(Logout.this, callback);
-
-                }
-                else{
-                    LoginClient.getInstance().loginWithKakaoAccount(Logout.this, callback);
-                }
-            }
-        });
-
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UserApiClient.getInstance().logout(new Function1<Throwable, Unit>() {
+            public void onSessionOpened() {
+                //로그인 요청
+                UserManagement.getInstance().me(new MeV2ResponseCallback() {
                     @Override
-                    public Unit invoke(Throwable throwable) {
-                        updateKakaoLoginUi();
-                        return null;
+                    public void onFailure(ErrorResult errorResult) {
+                        //로그인 실패
+                        Toast.makeText(Logout.this, "로그인 도중에 오류가 발생했습니다.. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onSessionClosed(ErrorResult errorResult) {
+                        //세션 닫힘
+                        Toast.makeText(Logout.this, "세션이 닫혔습니다.. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSuccess(MeV2Response result) {
+                        //로그인 성공
+                        Intent intent = new Intent(Logout.this, Mypage.class);
+                        intent.putExtra("name", result.getKakaoAccount().getProfile().getNickname());
+                        intent.putExtra("profileImg", result.getKakaoAccount().getProfile().getProfileImageUrl());
+                        intent.putExtra("email", result.getKakaoAccount().getEmail());
+                        startActivity(intent);
+
+
+                        Toast.makeText(Logout.this, "환영 합니다 !", Toast.LENGTH_SHORT).show();
+
                     }
                 });
             }
-        });
 
-        updateKakaoLoginUi();
-    }
-
-    private void updateKakaoLoginUi(){
-        UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
             @Override
-            public Unit invoke(User user, Throwable throwable) {
-                if(user != null){
-                    loginButton.setVisibility(View.GONE);
-                    logoutButton.setVisibility(View.VISIBLE);
+            public void onSessionOpenFailed(KakaoException exception) {
 
-                    Log.i(TAG, "invoke: id=" + user.getId());
-                    Log.i(TAG, "invoke: email=" + user.getKakaoAccount().getEmail());
-                    Log.i(TAG, "invoke: nickname=" + user.getKakaoAccount().getProfile().getNickname());
-                    Log.i(TAG, "invoke: gender=" + user.getKakaoAccount().getGender());
-                    Log.i(TAG, "invoke: age=" + user.getKakaoAccount().getAgeRange());
-
-                    nickName.setText(user.getKakaoAccount().getProfile().getNickname());
-
-                } else {
-                    nickName.setText(null);
-
-                    loginButton.setVisibility(View.VISIBLE);
-                    logoutButton.setVisibility(View.GONE);
-
-                }
-                return null;
             }
-        });
+        };
+
+        Session.getCurrentSession().addCallback(mSessionCallback);
+        Session.getCurrentSession().checkAndImplicitOpen();
+
+
+
+
+
+
+
+
+        };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if (Session.getCurrentSession().handleActivityResult(requestCode,resultCode,data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Session.getCurrentSession().removeCallback(mSessionCallback);
+    }
 }
+
