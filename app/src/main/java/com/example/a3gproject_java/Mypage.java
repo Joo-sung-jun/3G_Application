@@ -22,6 +22,34 @@ public class Mypage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
 
+        //카카오톡
+        Intent intent = getIntent();
+        strNick = intent.getStringExtra("name");
+        strProfileImg = intent.getStringExtra("profileImg");
+        strEmail = intent.getStringExtra("email");
+
+        TextView tv_nick = findViewById(R.id.tv_nickName);
+        TextView tv_email = findViewById(R.id.tv_email);
+        ImageView iv_profile = findViewById(R.id.tv_profile);
+
+        tv_nick.setText(strNick);
+        tv_email.setText(strEmail);
+
+        Glide.with(this).load(strProfileImg).into(iv_profile);
+
+        findViewById(R.id.bt_logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+                    @Override
+                    public void onCompleteLogout() {
+                        //로그아웃 성공
+                        finish();
+                    }
+                });
+            }
+        });
+
         //하단바 학점계산기 버튼 클릭 시 학점계산기 첫 화면으로 이동(홈화면)
         ImageButton btn_calculator = (ImageButton) findViewById(R.id.btn_calculator);
         btn_calculator.setOnClickListener(new View.OnClickListener() {
@@ -82,33 +110,7 @@ public class Mypage extends AppCompatActivity {
         });
 
 
-        //카카오톡
-        Intent intent = getIntent();
-        strNick = intent.getStringExtra("name");
-        strProfileImg = intent.getStringExtra("profileImg");
-        strEmail = intent.getStringExtra("email");
 
-        //TextView tv_nick = findViewById(R.id.tv_nickName);
-        //TextView tv_email = findViewById(R.id.tv_email);
-        //ImageView iv_profile = findViewById(R.id.iv_profile);
-
-        //tv_nick.setText(strNick);
-        //tv_email.setText(strEmail);
-
-        //Glide.with(this).load(strProfileImg).into(iv_profile);
-
-        findViewById(R.id.bt_logout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
-                    @Override
-                    public void onCompleteLogout() {
-                        //로그아웃 성공
-                        finish();
-                    }
-                });
-            }
-        });
 
     }
 }
