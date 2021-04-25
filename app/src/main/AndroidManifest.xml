@@ -15,18 +15,20 @@
         android:usesCleartextTraffic="true">
 
         <activity android:name=".SubActivity"></activity>
-        <activity android:name=".Logout" />
+        <activity android:name=".Logout">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Change" />
         <activity android:name=".Checklist_jeongong" />
         <activity android:name=".Mypage" />
         <activity android:name=".Ppt" />
         <activity android:name=".Checklist" />
         <activity android:name=".Calculator">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data

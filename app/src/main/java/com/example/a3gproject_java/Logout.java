@@ -69,7 +69,7 @@ public class Logout extends AppCompatActivity {
 
             @Override
             public void onSessionOpenFailed(KakaoException exception) {
-
+                Toast.makeText(Logout.this, "onSessionOpenFailed", Toast.LENGTH_SHORT).show();
             }
         };
 
